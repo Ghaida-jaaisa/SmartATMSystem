@@ -6,7 +6,7 @@ import { API_URL } from "@/constants/api";
 export const getUser = () => {
   try {
     const localUser = localStorage.getItem("user");
-    
+
     if (!localUser) {
       throw new Error("User not found. Please login again.");
     }
@@ -38,10 +38,10 @@ export const updateUser = async (userData) => {
     }
 
     const updatedUser = await response.json();
-    
+
     // Update localStorage
     localStorage.setItem("user", JSON.stringify(updatedUser));
-    
+
     return updatedUser;
   } catch (error) {
     console.error("Error updating user:", error);
@@ -52,7 +52,7 @@ export const updateUser = async (userData) => {
 export const depositMoney = async (amount, currency = "ILS") => {
   try {
     const user = getUser();
-    
+
     if (amount <= 0) {
       throw new Error("Deposit amount must be positive");
     }
@@ -103,7 +103,8 @@ export const withdrawMoney = async (amount, currency = "ILS") => {
       ...user,
       balance: newBalance,
       transactions: [...user.transactions, newTransaction],
-    };updateUser
+    };
+    updateUser;
     const updatedUser = await updateUser(updatedUserData);
 
     return updatedUser;
@@ -162,7 +163,7 @@ export const resetAccount = async () => {
     };
 
     const updatedUser = await updateUser(resetUserData);
-    
+
     return updatedUser;
   } catch (error) {
     console.error("Error resetting account:", error);
@@ -173,15 +174,13 @@ export const resetAccount = async () => {
 export const loginUser = async (username, pin) => {
   try {
     const response = await fetch(API_URL);
-    
+
     if (!response.ok) {
       throw new Error("Failed to fetch users");
     }
 
     const users = await response.json();
-    const user = users.find(
-      (u) => u.user_name === username && u.pin === pin
-    );
+    const user = users.find((u) => u.user_name === username && u.pin === pin);
 
     if (!user) {
       throw new Error("Invalid username or PIN");
