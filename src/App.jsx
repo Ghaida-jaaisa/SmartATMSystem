@@ -9,6 +9,7 @@ import DashboardHome from "./pages/DashboardHome";
 import Deposit from "./pages/Deposit";
 import Withdraw from "./pages/Withdraw";
 import Watchlist from "./pages/Watchlist";
+import History from "./pages/History";
 
 function App() {
   return (
@@ -23,8 +24,8 @@ function App() {
 
         <Route path="withdraw" element={<Withdraw />} />
         <Route path="watchlist" element={<Watchlist />} />
-        {/*
         <Route path="history" element={<History />} />
+        {/*
         <Route path="settings" element={<Settings />} /> */}
       </Route>
 
